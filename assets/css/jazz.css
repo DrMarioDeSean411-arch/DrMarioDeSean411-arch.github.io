@@ -1,0 +1,364 @@
+/* ==========================================================================
+   Jazz layer for Academic Pages.
+   Loaded after main.css by _includes/head/custom.html. Delete that one link
+   line and the site returns to the stock template look.
+   ========================================================================== */
+
+:root {
+  --jz-midnight: #140f3a;
+  --jz-violet: #4b1f7e;
+  --jz-plum: #7b2a63;
+  --jz-teal: #0b6b7a;
+  --jz-gold: #f2b84b;
+
+  --jz-card: rgba(255, 255, 255, 0.95);
+  --jz-card-text: #2a2540;
+  --jz-link: #0a6572;
+  --jz-link-visited: #5d3d92;
+  --jz-link-hover: #4b1f7e;
+  --jz-title-a: #4b1f7e;
+  --jz-title-b: #0b6b7a;
+  --jz-title-c: #7b2a63;
+  --jz-hover-tint: rgba(75, 31, 126, 0.07);
+}
+
+html[data-theme="dark"] {
+  --jz-card: rgba(26, 23, 48, 0.94);
+  --jz-card-text: #ece9fa;
+  --jz-link: #7fd6e6;
+  --jz-link-visited: #c4a7ff;
+  --jz-link-hover: #f2b84b;
+  --jz-title-a: #f2b84b;
+  --jz-title-b: #7fd6e6;
+  --jz-title-c: #ff9fd0;
+  --jz-hover-tint: rgba(242, 184, 75, 0.09);
+}
+
+/* ---------- Animated background ---------- */
+
+html {
+  background: linear-gradient(125deg, #140f3a, #4b1f7e, #0b6b7a, #7b2a63, #140f3a);
+  background-color: var(--jz-midnight);
+  background-size: 400% 400%;
+  background-attachment: fixed;
+  animation: jz-drift 45s ease-in-out infinite;
+}
+
+body {
+  background: transparent;
+  color: #f3efff;
+}
+
+@keyframes jz-drift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ---------- Reading progress bar ---------- */
+
+.jz-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  z-index: 100;
+  background: linear-gradient(90deg, var(--jz-gold), #7fd6e6, #ff9fd0);
+  box-shadow: 0 0 10px rgba(242, 184, 75, 0.7);
+  transition: width 0.1s linear;
+}
+
+/* ---------- Masthead ---------- */
+
+.masthead {
+  background: rgba(20, 15, 58, 0.78);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(242, 184, 75, 0.35);
+}
+
+.greedy-nav,
+.masthead__menu-item,
+.greedy-nav button {
+  background: transparent;
+}
+
+.greedy-nav .hidden-links {
+  background: rgba(20, 15, 58, 0.97);
+  border-color: rgba(242, 184, 75, 0.4);
+}
+
+.masthead a,
+.greedy-nav a,
+.greedy-nav button {
+  color: #f3efff;
+}
+
+.greedy-nav .masthead__menu-item a {
+  color: #f3efff;
+}
+
+.greedy-nav .masthead__menu-item--lg a {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* The page you are on: gold with a gold underline */
+.greedy-nav .masthead__menu-item.selected a,
+.greedy-nav .masthead__menu-item.selected a:hover {
+  color: var(--jz-gold);
+  border-bottom: 2px solid var(--jz-gold);
+}
+
+.greedy-nav .navicon,
+.greedy-nav .navicon:before,
+.greedy-nav .navicon:after {
+  background: #f3efff;
+}
+
+.masthead a:hover,
+.greedy-nav a:hover,
+.greedy-nav button:hover {
+  color: var(--jz-gold);
+}
+
+.greedy-nav .visible-links a:before {
+  background: var(--jz-gold);
+}
+
+/* ---------- Sidebar (sits directly on the gradient) ---------- */
+
+.sidebar,
+.sidebar .author__name,
+.sidebar .author__bio,
+.sidebar .author__pronouns,
+.sidebar .author__urls li,
+.sidebar .author__urls a {
+  color: #f3efff;
+}
+
+.sidebar .author__urls a:hover,
+.sidebar .author__urls a:focus {
+  color: var(--jz-gold);
+}
+
+.sidebar .author__urls-wrapper button {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(242, 184, 75, 0.45);
+  color: #f3efff;
+}
+
+.sidebar .author__urls {
+  background: rgba(20, 15, 58, 0.92);
+  border-color: rgba(242, 184, 75, 0.4);
+}
+
+.author__avatar img {
+  border: 3px solid var(--jz-gold);
+  padding: 0;
+  box-shadow: 0 10px 30px rgba(8, 4, 32, 0.45);
+  transition: transform 0.45s ease;
+  animation: jz-glow 5s ease-in-out infinite;
+}
+
+.author__avatar img:hover {
+  transform: scale(1.04) rotate(-1.5deg);
+}
+
+@keyframes jz-glow {
+  0%, 100% { box-shadow: 0 10px 30px rgba(8, 4, 32, 0.45), 0 0 0 0 rgba(242, 184, 75, 0.0); }
+  50%      { box-shadow: 0 10px 30px rgba(8, 4, 32, 0.45), 0 0 0 9px rgba(242, 184, 75, 0.22); }
+}
+
+.sidebar .author__urls li {
+  transition: transform 0.2s ease;
+}
+
+.sidebar .author__urls li:hover {
+  transform: translateX(4px);
+}
+
+/* ---------- Content card ---------- */
+
+@media screen and (min-width: 1024px) {
+  .page {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.page .page__inner-wrap {
+  float: none;
+  width: auto;
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 1em 2em 1.4em;
+  box-sizing: border-box;
+  background: var(--jz-card);
+  color: var(--jz-card-text);
+  border-radius: 18px;
+  box-shadow: 0 22px 60px rgba(8, 4, 32, 0.4);
+}
+
+.page .page__inner-wrap .page__content,
+.page .page__inner-wrap .page__meta,
+.page .page__inner-wrap .page__share {
+  float: none;
+  width: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.page h1,
+.page h2,
+.page h3,
+.page h4,
+.page h5,
+.page h6,
+.page p,
+.page li,
+.page strong,
+.page em {
+  color: var(--jz-card-text);
+}
+
+.page__title {
+  background: linear-gradient(90deg, var(--jz-title-a), var(--jz-title-b), var(--jz-title-c), var(--jz-title-a));
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: jz-shine 10s linear infinite;
+}
+
+@keyframes jz-shine {
+  to { background-position: 250% center; }
+}
+
+.page__content h2 {
+  position: relative;
+  border-bottom: none;
+  padding-bottom: 0.45em;
+}
+
+.page__content h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 90px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--jz-gold), var(--jz-title-b));
+  transition: width 0.7s ease;
+}
+
+.page__content h2.jz-reveal:not(.jz-in)::after {
+  width: 0;
+}
+
+/* ---------- Links ---------- */
+
+.page a,
+.page a:link {
+  color: var(--jz-link);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition: background-size 0.3s ease, color 0.2s ease;
+}
+
+.page a:visited {
+  color: var(--jz-link-visited);
+}
+
+.page a:hover,
+.page a:focus {
+  color: var(--jz-link-hover);
+  background-size: 100% 2px;
+}
+
+/* ---------- Lists ---------- */
+
+.page__content ul > li,
+.page__content ol > li {
+  border-radius: 8px;
+  padding: 0.18em 0.5em;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.page__content ul > li:hover,
+.page__content ol > li:hover {
+  background-color: var(--jz-hover-tint);
+  transform: translateX(5px);
+}
+
+/* ---------- Footer ---------- */
+
+.page__footer {
+  position: relative;
+  bottom: auto;
+  margin-top: 3em;
+  background: rgba(14, 10, 40, 0.68);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #d9d2f5;
+  border-top: 1px solid rgba(242, 184, 75, 0.3);
+}
+
+.page__footer footer,
+.page__footer-copyright {
+  color: #d9d2f5;
+}
+
+.page__footer a,
+.page__footer-follow li,
+.page__footer-follow li a {
+  color: var(--jz-gold);
+}
+
+/* ---------- Scroll reveal (script adds these classes) ---------- */
+
+.jz-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.jz-reveal.jz-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Selection ---------- */
+
+::selection {
+  background: var(--jz-gold);
+  color: #140f3a;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  .page__title,
+  .author__avatar img {
+    animation: none;
+  }
+
+  .jz-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .page__content ul > li:hover,
+  .page__content ol > li:hover,
+  .sidebar .author__urls li:hover {
+    transform: none;
+  }
+}
